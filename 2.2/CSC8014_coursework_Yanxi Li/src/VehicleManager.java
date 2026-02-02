@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+
+/**
+ * VehicleManager  
+ *
+ * @author Rouaa Yassin Kassab
+ * Copyright (C) 2026 Newcastle University, UK
+ */
+
+public class VehicleManager {
+
+	/** When you add the VehicleManager.java and Vehicle.java to your project,
+	 * you will get a compilation error
+	 * because the other classes are not created yet. 
+	 * This will be resolved once you create the required classes.
+	 **/
+
+	ArrayList<Vehicle> allVehicles = new ArrayList<Vehicle>();
+	ArrayList<CustomerRecord> customers = new ArrayList<CustomerRecord>();
+	HashMap<Vehicle, CustomerRecord> hiredVehicles = new HashMap<>();
+	Car car;
+	Van van;
+
+
+
+
+	//you can add attributes and additional methods if needed.
+	//you can throw an exception if needed
+
+
+	public Vehicle addVehicle(String vehicleType){
+		//add your code here. Do NOT change the method signature
+
+		if(vehicleType == "Car"){
+			allVehicles.add(car);
+		}else if(vehicleType == "Van"){
+			allVehicles.add(van);
+		}
+		return ;
+	}
+
+	public int noOfAvailableVehicles(String vehicleType) {
+		//add your code here. Do NOT change the method signature
+		return 0; 
+	}
+
+
+	public CustomerRecord addCustomerRecord(String firstName, String lastName, Date dob, Boolean hasCommercialLicense)
+	{
+		//add your code here. Do NOT change the method signature
+
+		return null; 
+	}
+
+
+
+	public boolean hireVehicle(CustomerRecord customerRecord, String vehicleType, int duration) {
+		//add your code here. Do NOT change the method signature 
+		return null; 
+	}
+
+	public void returnVehicle(VehicleID vehicleID ,CustomerRecord customerRecord, int mileage) {		
+		//add your code here. Do NOT change the method signature
+	}	
+
+
+	public Collection<Vehicle> getVechilesByCustomer (CustomerRecord customerRecord){
+		//add your code here. Do NOT change the method signature
+		return null;
+	}
+
+}
