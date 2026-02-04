@@ -7,14 +7,15 @@ public class Car implements Vehicle {
     public int CurrentMileage;
     public final boolean performServiceIfDue;
 
-    public Car(VehicleID carID, String vehicleType, boolean isHired, int distanceRequirement, int currentMileage, boolean performServiceIfDue){
+    public Car(VehicleID carID) {
         this.carID = carID;
-        this.vehicleType = vehicleType;
-        this.isHired = isHired;
-        this.DistanceRequirement = distanceRequirement;
-        this.performServiceIfDue = performServiceIfDue;
-        this.CurrentMileage = currentMileage;
+        this.vehicleType = "Car";
+        this.isHired = false;
+        this.DistanceRequirement = 10000;
+        this.performServiceIfDue = false;
+        this.CurrentMileage = 0;
     }
+
 
     @Override
     public VehicleID getVehicleID() {
@@ -33,12 +34,12 @@ public class Car implements Vehicle {
 
     @Override
     public boolean setHired(boolean hired) {
-        return this.isHired = hired ;
+        return this.isHired = hired;
     }
 
     @Override
     public int getDistanceRequirement() {
-        return 1000;
+        return 10000;
     }
 
     @Override
@@ -48,15 +49,19 @@ public class Car implements Vehicle {
 
     @Override
     public void setCurrentMileage(int mileage) {
-        if (mileage >= 0){
+        if (mileage >= 0) {
             this.CurrentMileage = mileage;
-        }else{
+        } else {
             System.out.println("Current mileage must more than 0");
         }
     }
 
     @Override
     public boolean performServiceIfDue() {
-        return false;
+        if (CurrentMileage >= 10000) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -38,7 +38,7 @@ public class Van implements Vehicle{
 
     @Override
     public int getDistanceRequirement() {
-        return 500;
+        return 5000;
     }
 
     @Override
@@ -57,6 +57,11 @@ public class Van implements Vehicle{
 
     @Override
     public boolean performServiceIfDue() {
-        return false;
+         if (CurrentMileage >= 5000) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     }
 }

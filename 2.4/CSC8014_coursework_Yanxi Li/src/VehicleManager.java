@@ -29,6 +29,10 @@ public class VehicleManager {
 
 	public Vehicle addVehicle(String vehicleType){
 		//add your code here. Do NOT change the method signature
+        if(vehicleType.equals("Car")){
+            VehicleID id = new VehicleID();
+            Vehicle vehicle = new Car();
+        }
         return null;
 	}
 
@@ -41,6 +45,7 @@ public class VehicleManager {
 
 	public CustomerRecord addCustomerRecord(String firstName, String lastName, Date dob, Boolean hasCommercialLicense) {
 		//add your code here. Do NOT change the method signature
+
 
 		return null; 
 	}
