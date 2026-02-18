@@ -2,42 +2,38 @@ import java.util.Date;
 
 public final class CustomerRecord {
 
-    private static long nextCustomerNumber = 1;
-    private final String  firstName;
-    private final String  lastName;
+    private static int CustomerNumber = 1;
+    private final Name name;
     private final Date dob;
-    private final boolean commercialLicence;
-    private final long customerNumber;
+    private final boolean hasCommercialLicense;
+    private final int customerNumber;
 
-    public CustomerRecord(String firstName, String lastName, Date dob, boolean commercialLicence) {
-        if (firstName == null || lastName == null || dob == null) {
-            throw new IllegalArgumentException("The name and date of birth cannot be empty");
+    public CustomerRecord(Name name, Date dob, boolean hasCommercialLicense) {
+        /**
+         * the name and dob cannot be empty
+         */
+        if (name == null || dob == null) {
+            throw new IllegalArgumentException("Name and date of birth cannot be empty");
         }
-
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.dob = new Date(dob.getTime());
-        this.commercialLicence = commercialLicence;
-        this.customerNumber = nextCustomerNumber++;
+        this.hasCommercialLicense = hasCommercialLicense;
+        this.customerNumber = CustomerNumber++;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Name getName() {
+        return name;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public Date getDateOfBirth() {
+    public Date getDob() {
         return new Date(dob.getTime());
     }
 
-    public boolean hasCommercialLicence() {
-        return commercialLicence;
+    public boolean hasCommercialLicense() {
+        return hasCommercialLicense;
     }
 
-    public long getCustomerNumber() {
+    public int getCustomerNumber() {
         return customerNumber;
     }
 }

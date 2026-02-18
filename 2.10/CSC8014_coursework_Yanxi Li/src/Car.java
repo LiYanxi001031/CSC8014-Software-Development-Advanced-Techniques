@@ -1,21 +1,19 @@
+
 public class Car implements Vehicle {
 
-    public VehicleID carID;
-    public final String vehicleType;
-    public boolean isHired;
-    public final int DistanceRequirement;
-    public int CurrentMileage;
-    public final boolean performServiceIfDue;
+    private final VehicleID carID;
+    private final String vehicleType;
+    private boolean hired;
+    private final int distanceRequirement;
+    private int currentMileage;
 
-    public Car(VehicleID carID) {
-        this.carID = carID;
+    public Car() {
+        this.carID = VehicleID.getInstance(VehicleID.VehicleType.CAR);
         this.vehicleType = "Car";
-        this.isHired = false;
-        this.DistanceRequirement = 10000;
-        this.performServiceIfDue = false;
-        this.CurrentMileage = 0;
+        this.hired = false;
+        this.distanceRequirement = 10000;
+        this.currentMileage = 0;
     }
-
 
     @Override
     public VehicleID getVehicleID() {
@@ -24,44 +22,50 @@ public class Car implements Vehicle {
 
     @Override
     public String getVehicleType() {
-        return "Car";
+        return vehicleType;
     }
 
     @Override
     public boolean isHired() {
-        return false;
+        return hired;
     }
 
     @Override
     public boolean setHired(boolean hired) {
-        return this.isHired = hired;
+        this.hired = hired;
+        return this.hired;
     }
 
     @Override
     public int getDistanceRequirement() {
-        return 10000;
+        return distanceRequirement;
     }
 
     @Override
     public int getCurrentMileage() {
-        return 0;
+        return currentMileage;
     }
 
     @Override
     public void setCurrentMileage(int mileage) {
-        if (mileage >= 0) {
-            this.CurrentMileage = mileage;
-        } else {
-            System.out.println("Current mileage must more than 0");
+        if (mileage < 0) {
+            throw new IllegalArgumentException("Mileage is negative");
         }
+        this.currentMileage = mileage;
     }
 
     @Override
     public boolean performServiceIfDue() {
-        if (CurrentMileage >= 10000) {
+        if (currentMileage >= distanceRequirement) {
+            currentMileage = 0;
             return true;
-        } else {
-            return false;
         }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return carID + " (Car) - Hired: " + hired +
+                ", Mileage: " + currentMileage;
     }
 }

@@ -1,19 +1,21 @@
-public class Van implements Vehicle{
+public class Van implements Vehicle {
 
-    public final VehicleID vanID;
-    public final String vehicleType;
-    public boolean isHired;
-    public final int DistanceRequirement;
-    public int CurrentMileage;
-    public final boolean performServiceIfDue;
+    private final VehicleID vanID;
+    private final String vehicleType;
+    private boolean hired;
+    private final int distanceRequirement;
+    private int currentMileage;
 
-    public Van(VehicleID vanID) {
-        this.vanID = vanID;
+
+    private boolean inspectionRequired;
+
+    public Van() {
+        this.vanID = VehicleID.getInstance(VehicleID.VehicleType.VAN);
         this.vehicleType = "Van";
-        this.isHired = false;
-        DistanceRequirement = 5000;
-        CurrentMileage = 0;
-        this.performServiceIfDue = false;
+        this.hired = false;
+        this.distanceRequirement = 5000;
+        this.currentMileage = 0;
+        this.inspectionRequired = false;
     }
 
     @Override
@@ -23,45 +25,53 @@ public class Van implements Vehicle{
 
     @Override
     public String getVehicleType() {
-        return "Van";
+        return vehicleType;
     }
 
     @Override
     public boolean isHired() {
-        return false;
+        return hired;
     }
 
     @Override
     public boolean setHired(boolean hired) {
-        return this.isHired = hired;
+        this.hired = hired;
+        return this.hired;
     }
 
     @Override
     public int getDistanceRequirement() {
-        return 5000;
+        return distanceRequirement;
     }
 
     @Override
     public int getCurrentMileage() {
-        return CurrentMileage;
+        return currentMileage;
     }
 
     @Override
     public void setCurrentMileage(int mileage) {
-        if (mileage >= 0){
-            this.CurrentMileage = mileage;
-        }else{
-            System.out.println("Current mileage must more than 0");
+        if (mileage < 0) {
+            throw new IllegalArgumentException("Mileage is negative");
         }
+        this.currentMileage = mileage;
     }
 
     @Override
     public boolean performServiceIfDue() {
-         if (CurrentMileage >= 5000) {
+        if (currentMileage >= distanceRequirement) {
+            currentMileage = 0;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
- }
 
+
+    public boolean requiresInspection() {
+        return inspectionRequired;
+    }
+
+    public void setInspectionRequired(boolean required) {
+        this.inspectionRequired = required;
+    }
+}
